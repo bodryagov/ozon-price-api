@@ -15,10 +15,10 @@ app.get('/price/:productId', async (req, res) => {
     const page = await browser.newPage();
     await page.goto(url, { waitUntil: 'networkidle2' });
 
-    await page.waitForSelector('[data-widget="webPrice"] span');
+    await page.waitForSelector('span.pm1_28');
 
-    const priceText = await page.$eval('[data-widget="webPrice"] span', el =>
-      el.textContent.replace(/\s/g, '').replace('₽', '')
+    const priceText = await page.$eval('span.pm1_28', el =>
+    el.textContent.replace(/\s/g, '').replace('₽', '')
     );
 
     const price = parseInt(priceText, 10);
